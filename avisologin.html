@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso</title>
+    <style>
+        /* Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: radial-gradient(circle, #1a1a2e 20%, #0f0f1a 80%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(30, 30, 50, 0.95);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #7bff00;
+            text-shadow: 0 0 10px #7bff00, 0 0 20px #66cc00, 0 0 30px #7bff00;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #d3d3d3;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #121212;
+            background: linear-gradient(135deg, #7bff00, #5af700);
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 15px rgba(123, 255, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(123, 255, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Em Desenvolvimento</h1>
+        <p>Nosso sistema de login com Discord está em desenvolvimento.<br>Fique atento às novidades!</p>
+        <a href="index.html" class="btn">Voltar ao Início</a>
+    </div>
+</body>
+</html>

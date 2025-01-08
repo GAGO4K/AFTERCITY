@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>After City - Site</title>
+    <style>
+        /* CSS */
+        body {
+            margin: 1;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+       /* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e1e1e; /* Fundo escuro, tom azul/negro */
+    padding: 15px 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo img {
+    max-width: 80px; /* Ajuste o tamanho do logo */
+    height: auto; /* Mantém proporção */
+    display: block; /* Remove espaços extras */
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+    position: relative; /* Posição para alinhar a barra */
+}
+
+.nav-links li:not(:last-child)::after {
+    content: "|"; /* Barra de separação */
+    color: #555; /* Cor da barra */
+    margin-left: 20px; /* Espaço entre a barra e o texto */
+    font-size: 16px;
+    font-weight: normal;
+    display: inline-block; /* Garante que a barra se alinhe */
+}
+
+
+
+.nav-links a:hover {
+    color: #7D5DFD; /* Destaque roxo quando hover */
+}
+
+.login-btn a {
+    color: #FFA726; /* Cor destaque (laranja) */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid #FFA726;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.login-btn a:hover {
+    background-color: #FFA726;
+    color: #000;
+}
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1f1f1f;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #7bff00;
+        }
+
+        .hero {
+    text-align: center;
+    padding: 100px 20px;
+    border: 3px solid #ffffff;
+    color: rgb(255, 255, 255);
+    background: url('fundoinicial.webp') no-repeat center center/cover;
+    transition: background 1s ease-in-out;
+}
+
+.hero2 {
+    text-align: center;
+    padding: 100px 20px;
+    border: 3px solid #ffffff;
+    color: rgb(255, 255, 255);
+    background: url('banneranonovo.png') no-repeat center center/cover;
+    transition: background 1s ease-in-out;
+}
+
+.hero3 {
+    text-align: center;
+    padding: 100px 20px;
+    border: 3px solid #ffffff;
+    color: rgb(255, 255, 255);
+    background: url('patchnotes.png') no-repeat center center/cover;
+    transition: background 1s ease-in-out;
+}
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            background-color: #7bff00;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background-color: #00ff6a;
+        }
+
+        footer {
+    background-color: #1d1d1d; /* Cor de fundo */
+    color: #ffffff; /* Cor do texto */
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-social-media a {
+    margin: 0 10px;
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-social-media a:hover {
+    color: #7bff00; /* Cor ao passar o mouse */
+}
+
+.footer-rights {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-rights p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-rights a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-rights a:hover {
+    color: #1da1f2;
+}
+
+.footer-logo img {
+    max-height: 50px; /* Tamanho ajustado do logo */
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Empilha os elementos em telas menores */
+        text-align: center;
+    }
+
+    .footer-social-media {
+        margin-bottom: 15px;
+    }
+}
+
+
+
+        .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; /* Ajuste para telas menores */
+}
+
+h2 {
+    font-size: 3.6rem;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+/* Estilos para os cartões das cidades */
+.city-card {
+    background-color: #333;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+    max-width: 32%; /* Cada cidade vai ocupar aproximadamente 1/3 da largura */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.city-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.city-card h3 {
+    font-size: 1.8rem;
+    color: #7bff00;
+    margin-bottom: 10px;
+}
+
+.city-card p {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.city-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para os botões */
+.btn-container {
+    text-align: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #7bff00;
+    color: #1e1e1e;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #7bff00;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        flex-direction: column; /* Empilhar os cartões em telas pequenas */
+        align-items: center;
+    }
+
+    .city-card {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .h2{
+        font-size: 3.6rem;
+    }
+
+    .city-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilo da infobox */
+#message {
+            display: none;
+            padding: 20px;
+            background-color: #2196F3; /* Cor de fundo azul */
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tela de Carregamento */
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Fica em cima de tudo */
+}
+
+/* Animação do spinner */
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #7bff00; /* Cor do carregamento */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animação de rotação do spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Esconde o conteúdo até o carregamento */
+#content {
+    display: none;
+}
+
+/* Estilo do conteúdo após o carregamento */
+.loaded #content {
+    display: block;
+}
+
+
+
+
+
+h2 .nossa {
+            color: #7bff00; /* Roxo */
+        }
+        h2 .cidade {
+            color: #ffffff; /* Branco */
+        }
+
+        .news {
+    padding: 50px 20px;
+    background-color: #111;
+    text-align: center;
+}
+.update-card {
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .update-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .update-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    </style>
+</head>
+<body>
+<!-- Tela de Carregamento -->
+<div id="loadingScreen">
+    <div class="loader"></div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        // Atrasar a remoção da tela de carregamento para 15 segundos
+        setTimeout(() => {
+            // Esconde o loading screen após 15 segundos
+            document.getElementById('loadingScreen').style.display = 'none';
+
+            // Libera a interação com o site
+            document.body.classList.add('loaded');
+        }, 2500); // 15000 milissegundos = 15 segundos
+    });
+</script>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logosemfundo.png" alt="Logo After City">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#cidades">NOSSAS CIDADES</a></li>
+            <li><a href="#starter-pack">PACOTE INICIAL</a></li>
+            <li><a href="#vips">VIPS</a></li>
+            <li><a href="#vip-packages">DIAMANTES</a></li>
+            <li><a href="#como-fazer-parte">COMO JOGAR</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="avisologin.html" class="login-btn">
+                EM DEV
+            </a>
+        </div>
+    </nav>
+
+    
+
+    <script>
+        // Função para verificar se é 1º de janeiro de 2025
+function checkDate() {
+    var today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth(); // Janeiro é 0, Fevereiro é 1, etc.
+    var year = today.getFullYear();
+
+    if (year === 2025 && month === 0 && day === 1) {
+        // Exibe a seção de boas-vindas
+        document.getElementById("welcomeSection").style.display = "block";
+
+        // Esconde a seção após 1 minuto (60000 milissegundos)
+        setTimeout(function() {
+            document.getElementById("welcomeSection").style.display = "none"; // Esconde a seção após 1 minuto
+        }, 60000); // 60000 milissegundos = 1 minuto
+    }
+}
+
+// Chama a função para verificar a data ao carregar a página
+window.onload = checkDate;
+
+       </script>
+
+    <style>
+       .welcome-section {
+            display: none;
+            border: 1px solid #ddd;
+            background-color: #6A1B9A;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .welcome-section h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .welcome-section p {
+            font-size: 1.2em;
+        }
+
+        /* Banner */
+        .banner {
+            background-color: #283593;
+            color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+    </style>
+
+    <style>
+        b {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+        
+        b:hover {
+            color: #7bff00;
+        }
+        </style>
+
+<section id="home"></section>
+    <section class="hero">
+        <h1>Bem-vindo ao After City Roleplay</h1>
+        <h3>Sua nova vida começa aqui.</h3>
+        <button id="discord"><i class="fab fa-discord"></i> Discord</button>
+        <button id="jogar"><i class="fas fa-play"></i> Jogar Agora</button>
+    </section>
+
+    
+    <section id="cidades">
+        <div class="container">
+            <h2><span class="nossa">NOSSAS</span> <span class="cidade">CIDADES</span></h2>
+            <div class="city-card">
+                <h3><i class="fas fa-landmark"></i> After City</h3>
+                <p>
+                    After City é uma cidade para você que gosta de imersão total em um universo digital, com muitos eventos e roleplay dinâmico. Construa sua jornada e interaja com uma comunidade vibrante.
+                </p>
+                <img src="backgroundpersonagem1.jpg" alt="Cidade Metrópole">
+            </div>
+            <div class="city-card">
+                <h3><i class="fas fa-building"></i> AfterVille - Embreve</h3>
+                <p>
+                    AfterVille é uma cidade para você que gosta de imersão total em um universo digital, com muitos eventos e roleplay dinâmico. Construa sua jornada e interaja com uma comunidade vibrante.
+                </p>
+                <img src="backgroundpersonagem2.jpg" alt="Metroville">
+            </div>
+        </div>
+    </section>
+
+    <section class="hero3"></section>
+
+    <p>
+        ㅤ
+    </p>
+    
+    
+
+    <section id="updates">    
+        <p>
+            ㅤ
+        </p>
+    <h2><span class="nossa">ATUALIZAÇÂO</span> <span class="cidade">RECENTES</span></h2>
+  <div class="container">
+    <!-- Cartão da primeira atualização -->
+    <div class="update-card">
+      <a href="atualizacao.html">
+        <img src="patchnotes1.png" alt="Atualização 1">
+      </a>
+    </div>
+
+    <!-- Cartão da segunda atualização -->
+    <div class="update-card">
+      <a href="atualizacao2.html">
+        <img src="patchnotes1.png" alt="Atualização 2">
+      </a>
+    </div>
+
+    <!-- Cartão da terceira atualização -->
+    <div class="update-card">
+      <a href="atualizacao2.html">
+        <img src="patchnotes1.png" alt="Atualização 3">
+      </a>
+    </div>
+  </div>
+  </section>
+
+  <p>
+
+  </p>
+  
+
+  <section class="hero2"></section>
+
+
+<style>
+
+
+        .marquee span {
+            margin: 0 20px; /* Espaçamento entre repetições */
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+</style>
+
+<p>ㅤ</p>
+
+<div class="marquee-container">
+<div class="marquee">
+    <span>AFTER15 - 15% off em todos os produtos.</span>
+    <span>AFTER15 - 15% off em todos os produtos.</span>
+    <span>AFTER15 - 15% off em todos os produtos.</span>
+</div>
+</div>
+
+ㅤ
+
+<section id="starter-pack">
+   <!-- Seção dos Planos -->
+   <section class="starter-pack">
+    <h2><span class="nossa">PACOTES</span> <span class="cidade">INICIAL</span></h2>
+    
+    
+    <!-- Contêiner dos planos -->
+    <div class="plans">
+        <!-- PLANO GOLD -->
+        <div class="plan gold">
+           
+            <img src="gold-img.webp" alt="Gold Car">
+            <h2>GOLD Starter Pack</h2>
+            <p class="price">R$ 85,00</p>
+            <ul>
+                <li><i class="fas fa-crown"></i> VIP Ouro (30 Dias)</li>
+                <li><i class="fas fa-gem"></i> 6.000 Diamantes</li>
+                <li><i class="fas fa-box"></i> 5 Caixas After</li>
+                <li><i class="fas fa-weight-hanging"></i> Bolso Pequeno (30kg)</li>
+                <li><i class="fas fa-piggy-bank"></i> R$ 15.000 no After Bank</li>
+                <li><i class="fas fa-car"></i> Carro Sentinel</li>
+            </ul>
+            
+        </div>
+
+        <!-- PLANO DIAMOND -->
+        <div class="plan diamond">
+            
+            <img src="diamond-img.webp" alt="Diamond Car">
+            <h2>DIAMOND Starter Pack</h2>
+            <p class="price">R$ 150,00</p>
+            <ul>
+                <li><i class="fas fa-gem"></i> VIP Diamante (30 Dias)</li>
+                <li><i class="fas fa-gem"></i> 12.000 Diamantes</li>
+                <li><i class="fas fa-box-open"></i> 12 Caixas After</li>
+                <li><i class="fas fa-weight-hanging"></i> Bolso Médio (60kg)</li>
+                <li><i class="fas fa-piggy-bank"></i> R$ 50.000 no After Bank</li>
+                <li><i class="fas fa-car"></i> Carro Sugoi-R</li>
+            </ul>
+            
+        </div>
+
+        <!-- PLANO SILVER -->
+        <div class="plan silver">
+            
+            <img src="silver-img.webp" alt="Silver Car">
+            <h2>SILVER Starter Pack</h2>
+            <p class="price">R$ 45,00</p>
+            <ul>
+                <li><i class="fas fa-crown"></i> VIP Prata (30 Dias)</li>
+                <li><i class="fas fa-box"></i> 2 Caixas After</li>
+                <li><i class="fas fa-piggy-bank"></i> R$ 5.000 no After Bank</li>
+                <li><i class="fas fa-car"></i> Carro Brioso</li>
+                <li><i class="fas fa-mobile-alt"></i> Celular e Rádio</li>
+            </ul>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Script de Aviso -->
+<script>
+    function avisoCompra() {
+        alert("Para comprar este pacote, abra um ticket em nosso site para prosseguir com a aquisição.");
+    }
+</script>
+
+  <style>
+
+h1.title {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #aaa;
+}
+
+/* Estilização dos planos */
+.plans {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.plan {
+    background: #333;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+    position: relative;
+    border: 1px solid #ddd;
+    
+    transition: transform 0.3s;
+}
+
+.plan:hover {
+    transform: translateY(-10px);
+}
+
+/* Badges de desconto */
+.badge {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background-color: #f39c12;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.9rem;
+}
+
+.badge.highlight {
+    background-color: #c70c0c;
+}
+
+.plan img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.plan h2 {
+    margin: 15px 0;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.price {
+    font-size: 1.8rem;
+    color: #7bff00;
+    margin: 10px 0;
+}
+
+/* Lista de benefícios com ícones */
+.plan ul li {
+    margin: 8px 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.plan ul li i {
+    color: #ffcc00; /* Cor dos ícones */
+    font-size: 1.1rem;
+}
+
+
+button {
+    background: #00ff62;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #7bff00;
+}
+
+  </style>
+
+<section id="vips"></section>
+  <!-- Seção dos Planos -->
+  <section class="vip-plans">
+    <h2><span class="nossa">CONHEÇA OS</span> <span class="cidade">PLANOS</span></h2>
+    <div class="plans-container">
+
+        <!-- Silver -->
+        <div class="plan bronze">
+            
+            <img src="vipbronze.png" alt="Bronze Vip">
+            <h3>Bronze <span>VIP</span></h3>
+            <ul>
+                <li><i class="fas fa-key"></i> Acesso a tatuagens exclusivas</li>
+                <li><i class="fas fa-key"></i> Acesso a cabelos exclusivos</li>
+                <li><i class="fas fa-gem"></i> Tempo de expiração no Market: 2 dias</li>
+                <li><i class="fas fa-person"></i> Prioridade na Fila: 30</li>
+            </ul>
+            <div class="price">R$ 15,00 
+                <span>(30 dias)</span></div>
+            
+        </div>
+
+        <!-- Silver -->
+        <div class="plan prata">
+           
+            <img src="vipprata.png" alt="Prata Vip">
+            <h3>Prata <span>VIP</span></h3>
+            <ul>
+                <li><i class="fas fa-key"></i> Acesso a tatuagens exclusivas</li>
+                <li><i class="fas fa-key"></i> Acesso a cabelos exclusivos</li>
+                <li><i class="fas fa-gem"></i> Tempo de expiração no Market: 2 dias</li>
+                <li><i class="fas fa-person"></i> Prioridade na Fila: 30</li>
+            </ul>
+            <div class="price">R$ 25,00 
+                <span>(30 dias)</span></div>
+            
+        </div>
+
+        <!-- Gold -->
+        <div class="plan ouro">
+            
+            <img src="vipouro.png" alt="Ouro Vip">
+            <h3>Ouro <span>VIP</span></h3>
+            <ul>
+                <li><i class="fas fa-box"></i> Slot no guarda-roupas: 2</li>
+                <li><i class="fas fa-gem"></i> 25% menos fome e sede</li>
+                <li><i class="fas fa-gem"></i> Tempo de expiração no Market: 3 dias</li>
+                <li><i class="fas fa-person"></i>Prioridade na Fila: 50</li>
+            </ul>
+            <div class="price">R$ 35,00 <span>(30 dias)</span></div>
+            
+        </div>
+
+        <!-- Diamond -->
+        <div class="plan diamante">
+           
+            <img src="vipdiamante.png" alt="Diamante Vip">
+            <h3>Diamante <span>VIP</span></h3>
+            <ul>
+                <li><i class="fas fa-gem"></i> Prioridade nos tickets</li>
+                <li><i class="fas fa-box"></i> Slot no guarda-roupas: 3</li>
+                <li><i class="fas fa-box"></i> Slot de Personagem Extra: 1</li>
+                <li><i class="fas fa-person"></i> Prioridade na Fila: 100</li>
+            </ul>
+            <div class="price">R$ 45,00 <span>(30 dias)</span></div>
+            
+        </div>
+    </div>
+</section>
+
+<style>
+
+
+.vip-plans {
+    text-align: center;
+    padding: 50px 30px;
+    background: url('personagem.png') no-repeat left 15%;
+    background-size: cover;
+}
+
+
+
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+    text-transform: uppercase;
+}
+
+.plans-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.plan {
+    background: #333;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.plan h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.plan h3 span {
+    color: #f0b90b;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.plan ul {
+    list-style: none;
+    margin: 10px 0 20px;
+}
+
+.plan ul li {
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.plan .price {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.plan button {
+    background-color: #f0b90b;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.plan button:hover {
+    background-color: #c9940a;
+}
+
+/* Cores Específicas */
+.silver {
+    border-color: #c0c0c0;
+}
+
+.gold {
+    border-color: #d4af37;
+}
+
+.diamond {
+    border-color: #b9f2ff;
+}
+
+</style>
+
+<section id="vip-packages">
+  <section class="vip-packages"> 
+    <h2><span class="nossa">PACOTES DE</span> <span class="cidade">DIAMANTES</span></h2>
+    <p class="sub-title">Muito mais vantagens por um pequeno valor</p>
+
+    <div class="packages-grid">
+        <!-- Pacote Básico -->
+        <div class="package">
+           
+          <img src="pacotebasico.png" alt="Imagem do pacote" class="package-image">
+          <div class="package-details">
+            <h3 class="package-name">Pacote Básico</h3>
+            
+            <p class="price"><i class="fa fa-money"></i> R$ 2,00</p>
+            <p class="price">
+                
+              <i class="fas fa-gem"></i> 1000 Diamantes
+            </p>
+            <p class="bonus"><i class="fas fa-gift"></i> +4% Bônus</p>
+            <button class="buy-btn" onclick="calculateValue(1000)">VALOR</button>
+            
+          </div>
+        </div>
+    
+        <!-- Pacote Medio -->
+        <div class="package">
+           
+          <img src="pacotemedio.png" alt="Imagem do pacote" class="package-image">
+          <div class="package-details">
+            <h3 class="package-name">Pacote Medio</h3>
+            <p class="price"> R$ 5,00</p>
+            <p class="price">
+                
+              <i class="fas fa-gem"></i> 2500 Diamantes
+            </p>
+            <p class="bonus"><i class="fas fa-gift"></i> +8% Bônus</p>
+            <button class="buy-btn" onclick="calculateValue(2500)">VALOR</button>
+            
+          </div>
+        </div>
+    
+        <!-- Pacote Avançado -->
+        <div class="package">
+           
+          <img src="pacoteavancado.png" alt="Imagem do pacote" class="package-image">
+          <div class="package-details">
+            <h3 class="package-name">Pacote Avançado</h3>
+            <p class="price"> R$ 9,00</p>
+            <p class="price">
+                
+              <i class="fas fa-gem"></i> 3500 Diamantes
+            </p>
+            <p class="bonus"><i class="fas fa-gift"></i> +10% Bônus</p>
+            <button class="buy-btn" onclick="calculateValue(4500)">VALOR</button>
+            
+          </div>
+        </div>
+
+        <!-- Pacote Raro -->
+        <div class="package">
+           
+            <img src="pacoteraro.png" alt="Imagem do pacote" class="package-image">
+            <div class="package-details">
+              <h3 class="package-name">Pacote Raro</h3>
+              <p class="price"> R$ 11,00</p>
+              <p class="price">
+               
+                <i class="fas fa-gem"></i> 5000 Diamantes
+              </p>
+              <p class="bonus"><i class="fas fa-gift"></i> +15% Bônus</p>
+              <button class="buy-btn" onclick="calculateValue(5500)">VALOR</button>
+              
+            </div>
+          </div>
+
+        <!-- Pacote Customizado -->
+        <div class="package">
+           
+            <img src="pacotepersonalizado.png" alt="Imagem do pacote" class="package-image">
+          <h3 class="package-name">Pacote Customizado</h3>
+          <p class="bonus"><i class="fas fa-gift"></i> +18% Bônus</p>
+          <label for="diamond-quantity">Digite a quantidade de diamantes:</label>
+          <input type="number" id="diamond-quantity" min="1" placeholder="Quantidade de diamantes">
+          <button class="buy-btn" onclick="calculateCustomValue()">CALCULAR VALOR</button>
+          <p id="custom-result"></p>
+        </div>
+      </div>
+    </section>
+</section>
+      
+      
+      <style>
+        .vip-packages {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.package {
+  background-color: #333;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.package:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.package img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.package .package-details {
+  margin-top: 10px;
+}
+
+.package .price,
+.package .bonus {
+  font-size: 18px;
+  color: #7bff00;
+  margin: 5px 0;
+}
+
+.package .price i,
+.package .bonus i {
+  color: #ff5722;
+  margin-right: 5px;
+}
+
+.package .buy-btn {
+  background-color: #7bff00;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 17px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.package .buy-btn:hover {
+  background-color: #45a049;
+}
+
+.custom-package {
+  background-color: #000000;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.custom-calculate {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-calculate input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.confirm-btn {
+  background-color: #7bff00;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-btn:hover {
+  background-color: #45a049;
+}
+
+.calculation-result {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+
+    </style>
+
+    <script>
+
+  // Função que calcula o valor com base na quantidade de diamantes
+function calculateValue(diamonds) {
+  const diamondValue = 0.002; // 1 Diamante = 0.002 Real (equivalente a 2 reais para 1000 diamantes)
+  const total = diamonds * diamondValue;
+  alert(`O valor total para ${diamonds} diamantes é: R$${total.toFixed(2)}.\nPor favor, abra um ticket para realizar a compra.`);
+}
+
+// Função que permite calcular o valor baseado em uma quantidade customizada de diamantes
+function calculateCustomValue() {
+  const diamondValue = 0.002; // 1 Diamante = 0.002 Real
+  const quantityInput = document.getElementById("diamond-quantity").value;
+
+  if (!quantityInput || quantityInput <= 0) {
+    alert("Por favor, insira uma quantidade válida de diamantes.");
+    return;
+  }
+
+  const total = quantityInput * diamondValue;
+
+  const resultElement = document.getElementById("custom-result");
+  resultElement.innerHTML = `O valor total para ${quantityInput} diamantes é: <strong>R$${total.toFixed(2)}</strong>. <br> Por favor, abra um ticket para realizar a compra.`;
+  resultElement.style.display = 'block';  // Exibe o painel de resultado
+}
+
+
+    </script>
+
+  <section id="como-fazer-parte">
+    <div class="container">
+        <h2><span class="nossa">COMO FAZER</span> <span class="cidade">PARTE?</span></h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <div class="circle">
+                        <span class="number">1</span>
+                    </div>
+                </div>
+                <div class="step-info">
+                    <h3>Adquira sua allowlist para o After City</h3>
+                    <p>Garanta sua entrada nas cidades exclusivas, After City, adquirindo a allowlist.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <div class="circle">
+                        <span class="number">2</span>
+                    </div>
+                </div>
+                <div class="step-info">
+                    <h3>Tenha uma cópia original do jogo GTA SA</h3>
+                    <p>É necessário possuir uma cópia legítima do jogo GTA SA para jogar no servidor.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <div class="circle">
+                        <span class="number">3</span>
+                    </div>
+                </div>
+                <div class="step-info">
+                    <h3>Tenha o MTA SA instalado</h3>
+                    <p>Baixe e instale o MTA SA, plataforma necessária para acessar o servidor do nosso Roleplay.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="connect-steps">
+            <h2>Conecte-se às cidades</h2>
+            <div class="connect-city">
+                <img src="logosemfundo.png" alt="Logo da Cidade 1" class="city-logo">
+                <p>Conecte-se AfterCity</p>
+                <a href="mtasa://ip-da-aftercity:porta" class="btn">Conectar à Cidade 1</a>
+            </div>
+            <div class="connect-city">
+                <img src="logosemfundo.png" alt="Logo da Cidade 2" class="city-logo">
+                <p>Conecte-se AfterVille</p>
+                <a href="#" class="btn disabled" onclick="return false;">Conectar à Cidade 2</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    #como-fazer-parte {
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    #como-fazer-parte h2 {
+        font-size: 3rem;
+        margin-bottom: 40px;
+        color: #7bff00;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .step {
+        background: #333;
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        width: 30%;
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .step:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .step-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .circle {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(145deg, #7bff00, #45a049);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 2.5rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .step-info h3 {
+        font-size: 1.5rem;
+        color: #000000;
+        margin-bottom: 10px;
+    }
+
+    .step-info p {
+        font-size: 1rem;
+        color: #ddd;
+    }
+
+    .connect-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .connect-city {
+        background: #333;
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        width: 45%;
+        text-align: center;
+        border: 1px solid #ddd;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .connect-city:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .city-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    background-color: #15ff00;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #00ff6a;
+}
+
+.btn.disabled {
+    background-color: #6c757d; /* Cor cinza para indicar desativado */
+    pointer-events: none; /* Impede cliques */
+    cursor: not-allowed; /* Muda o cursor para 'não permitido' */
+    opacity: 0.6; /* Deixa o botão visualmente mais opaco */
+}
+
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .steps {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step {
+            width: 80%;
+            margin-bottom: 30px;
+        }
+
+        .connect-steps {
+            flex-direction: column;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .connect-city {
+            width: 80%;
+            margin-top: 15px;
+        }
+    }
+</style>
+
+    <footer>
+        <div class="footer-container">
+            <!-- Redes sociais -->
+            <div class="footer-social-media">
+                <a href="https://www.instagram.com/AfterCityRoleplay" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/AfterCityRP" target="_blank" title="Twitter">
+                    <i class="fab fa-x"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/AfterCityRoleplay" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://discord.gg/DEfP3CnXBH" target="_blank" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+    
+            <!-- Direitos reservados -->
+            <div class="footer-rights">
+                <p>&copy; 2024-2025 After City Roleplay. Todos os direitos reservados.</p>
+                <p>
+                    <a href="politica-privacidade.html" target="_blank">Política de Privacidade</a> |
+                    <a href="termos-servico.html" target="_blank">Termos de Serviço</a>
+                </p>
+            </div>
+    
+            <!-- Logo -->
+            <div class="footer-logo">
+                <img src="logosemfundo.png" alt="After City Roleplay" />
+            </div>
+        </div>
+    </footer>
+    
+
+<script>
+    // Função para o botão do Discord
+    document.getElementById('discord').addEventListener('click', () => {
+        // Redireciona para o link do Discord
+        window.open('https://discord.gg/DEfP3CnXBH', '_blank'); // Substitua com o link do seu Discord
+    });
+
+    // Função para o botão de Jogar Agora
+    document.getElementById('jogar').addEventListener('click', () => {
+        // Exibe a mensagem de boas-vindas
+        alert('Seu MTA está sendo aberto automaticamente. Prepare-se para se conectar à cidade e começar sua aventura!');
+        
+        // Redireciona para o servidor MTA
+        window.location.href = 'mtasa://ip-do-servidor:porta'; // Substitua com o IP e porta do servidor MTA
+    });
+</script>
+
+
+<script type="text/javascript">
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "e615689e-77c7-415d-a844-a883908319e7";
+    (function() {
+        d = document;
+        s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+
+        s.onload = function() {
+            // Personalizando a cor do botão de chat após a carga do Crisp
+            window.$crisp.push(["set", "chat", "color", "#7bff00"]);  // Altere para a cor desejada
+        };
+    })();
+
+
+</script>
+
+    
+</body>
+</html>
