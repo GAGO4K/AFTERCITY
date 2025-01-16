@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras - After City Roleplay</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #1e1e1e;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: #76ff03;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #2e2e2e;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            outline: none;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: #76ff03;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            color: #64dd17;
+        }
+
+        .sidebar {
+            background-color: #1e1e1e;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar h2 {
+            color: #76ff03;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li a:hover {
+            color: #76ff03;
+        }
+
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        .rules {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .rules h2 {
+            color: #76ff03;
+            border-bottom: 2px solid #76ff03;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .rules h2 i {
+            margin-right: 10px;
+        }
+
+        .rules ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #2e2e2e;
+            border-left: 5px solid #76ff03;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #76ff03;
+            color: #121212;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .home-button:hover {
+            background-color: #64dd17;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1e1e1e;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div>After City Roleplay</div>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> Início</a>
+            <a href="https://discord.gg/DEfP3CnXBH"><i class="fab fa-discord"></i> Discord</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Pesquisar regras..." />
+            <button onclick="searchRules()"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <h2><i class="fas fa-bars"></i> Navegação</h2>
+        <ul>
+            <li><a href="#"><i class="fas fa-info-circle" style="margin-right: 8px;"></i> Introdução</a></li>
+            <li><a href="#regrasrp"><i class="fas fa-book" style="margin-right: 8px;"></i> Regulamento</a></li>
+            <li><a href="#leia"><i class="fas fa-balance-scale" style="margin-right: 8px;"></i> Leis</a></li>
+            <li><a href="#discord"><i class="fab fa-discord" style="margin-right: 8px;"></i> Regras Discord</a></li>
+        </ul>          
+    
+        <!-- Botão para abrir o painel de seleção -->
+        <button class="city-btn" onclick="toggleCityPanel()">
+            <i class="fas fa-cogs" ></i> Selecionar Cidade
+        </button>
+    
+        <!-- Painel que será mostrado ao clicar no botão -->
+        <div id="city-panel" class="city-panel">
+            <button class="city-option available" onclick="showCity('aftercity')">
+                <i class="fas fa-city"></i> After City (Disponível)
+            </button>
+            <button class="city-option unavailable" onclick="showCity('aftervilley')">
+                <i class="fas fa-city"></i> After Villey (Indisponível)
+            </button>
+            <div class="development-container">
+                <span class="development-tag">Em desenvolvimento</span>
+            </div>
+        </div>
+
+        <!-- Área onde as informações das cidades serão exibidas -->
+        <div id="city-info" class="city-info"></div>
+    </aside>
+    
+    <style>
+        /* Estilos principais da sidebar */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+        }
+    
+        /* Estilo do botão de seleção de cidade */
+.city-btn {
+    border: 2px solid #ddd; /* Mantém a borda */
+    background-color: transparent; /* Remove a cor de fundo */
+    color: #ddd; /* Cor do texto para combinar com a borda */
+    padding: 12px 20px;
+    border-radius: 50px;
+    width: 200px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    
+        .city-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+    
+        /* Estilos do painel de seleção */
+        .city-panel {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px ;
+            background-color: #141414;
+            border: 1px solid #ddd;
+            animation: slideIn 0.5s ease-out;
+        }
+    
+        .city-option {
+            border: 2px solid #ddd;
+            background-color: #4CAF50;
+            color: rgb(24, 23, 23);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+    
+        .development-tag {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #00ff22;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+        .city-option.available:hover {
+            background-color: #45a049;
+        }
+    
+        .city-option.unavailable {
+            background-color: #f44336;
+        }
+    
+        .city-option.unavailable:hover {
+            background-color: #e53935;
+        }
+    
+        /* Animação para o painel aparecer */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    
+        /* Estilo da área de informações da cidade */
+        .city-info {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+    
+    <script>
+        // Função para mostrar ou esconder o painel de seleção de cidade
+        function toggleCityPanel() {
+            const panel = document.getElementById('city-panel');
+            panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'block' : 'none';
+        }
+    
+        // Função para exibir as informações da cidade escolhida
+        function showCity(city) {
+            let cityInfo = document.getElementById('city-info');
+            if (city === 'aftercity') {
+                cityInfo.innerHTML = '<p><i class="fas fa-check-circle"></i> After City está disponível! Escolha suas regras abaixo.</p>';
+            } else if (city === 'aftervilley') {
+                cityInfo.innerHTML = '<p><i class="fas fa-times-circle"></i> After Villey está indisponível no momento.</p>';
+            }
+            // Fechar o painel após a escolha
+            document.getElementById('city-panel').style.display = 'none';
+        }
+    </script>
+    
+    
+    <main class="content">
+        <section id="regrasrp" class="rules">
+            <h2><i class="fas fa-book"></i> Regulamento</h2>
+<ul>
+    <li><strong>1 - Regras Gerais:</strong> Siga as regras do servidor e mantenha um comportamento respeitoso com todos os jogadores.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Ignorar as regras do servidor e agir de forma prejudicial ao roleplay de outros jogadores, como causar caos sem motivo.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Participar de eventos, missões e atividades de forma a enriquecer o roleplay coletivo, respeitando todos os envolvidos.</em>
+    </li>
+    <li><strong>2 - Amor à vida:</strong> Valorize a vida do seu personagem. Não tome atitudes suicidas ou imprudentes.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Colocar seu personagem em situações onde as chances de morrer são muito altas, como reagir a uma troca de tiro estando cercado ou pular de um lugar muito alto para escapar.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Você deve interpretar seu personagem como se sua vida fosse frágil e única, assim como na vida real. Priorize a segurança do personagem e tome decisões que aumentem suas chances de sobrevivência, como buscar uma cobertura ou negociar em vez de lutar quando em desvantagem.</em>
+    </li>
+    <li><strong>3 - Metagaming:</strong> Proibido o uso de informações obtidas fora do jogo para benefício no RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Usar informações de outros jogadores obtidas fora do jogo para agir dentro do RP, como saber onde alguém está por ter assistido a um stream.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Usar apenas as informações adquiridas dentro do contexto do jogo, ou seja, o que seu personagem sabe, e construir sua história a partir disso.</em>
+    </li>
+    <li><strong>4 - VDM (Vehicle Deathmatch):</strong> Não use o veículo como arma, atropelando ou causando danos intencionais a outros jogadores.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Atropelar um jogador ou causar danos a outro veículo sem nenhuma justificativa dentro do RP.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Utilizar o veículo de forma adequada para transporte, fugas ou missões, mas sem utilizá-lo como arma para matar ou ferir outros jogadores sem motivo.</em>
+    </li>
+    <li><strong>5 - RDM (Random Deathmatch):</strong> Não mate outros jogadores sem justificativa RP plausível.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Matar um jogador sem qualquer justificativa, como se fosse apenas para "diversão" ou vingança sem contexto dentro do RP.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Matar ou ferir alguém dentro de uma situação de RP válida, como uma troca de tiros por disputa territorial, legítima defesa ou alguma outra situação coerente com a história do seu personagem.</em>
+    </li>
+    <li><strong>6 - Powergaming:</strong> Realizar ações impossíveis ou forçar situações irreais que prejudicam o RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Fazer seu personagem realizar tarefas ou habilidades que não são realistas, como pular de um prédio alto sem ferimentos ou curar uma pessoa de forma instantânea.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Limitar as ações do seu personagem às suas capacidades físicas e habilidades dentro do universo do jogo, mantendo o comportamento coerente com a realidade do RP.</em>
+    </li>
+    <li><strong>7 - Flaming:</strong> Evite xingamentos ou insultos, mantenha a cordialidade no jogo.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Fazer comentários ofensivos, discriminatórios ou ataques pessoais a outros jogadores durante o RP.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Manter uma postura educada e cordial, mesmo em momentos de conflito, respeitando o espaço dos outros e evitando gerar discórdia fora do RP.</em>
+    </li>
+    <li><strong>8 - Combat Logging:</strong> Não saia do servidor durante um combate ou situação tensa para evitar consequências RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Desconectar-se do servidor durante uma perseguição ou troca de tiros para evitar ser preso, morto ou prejudicado dentro do jogo.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Permanecer no servidor até a resolução da situação, seja ela uma fuga ou captura, lidando com as consequências de suas ações.</em>
+    </li>
+    <li><strong>9 - "Dark RP":</strong> Evite realizar RP apenas com ações negativas e sem sentido, que não contribuem para a diversão de todos.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Criar um personagem apenas para gerar caos e confusão sem motivo, causando desconforto para outros jogadores.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Desenvolver personagens com histórias envolventes, que tragam desafios ou problemas, mas de forma que contribuam para o RP de todos.</em>
+    </li>
+    <li><strong>10 - "Anti RP":</strong> Não participe de ações que quebrem completamente o clima do roleplay, prejudicando outros jogadores.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Quebrar o clima do RP, como fazer piadas ou ações fora de contexto que afastam a imersão dos outros jogadores.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Agir de maneira que enriqueça a narrativa do jogo, mantendo-se dentro do universo do RP e respeitando o envolvimento dos outros jogadores.</em>
+    </li>
+    <li><strong>11 - Uso do Voip:</strong> Use o voip com moderação e respeite as regras de comunicação no jogo.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Usar o voip excessivamente, interrompendo outros jogadores, ou gritar durante o jogo sem necessidade.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Usar o voip de forma clara e concisa, apenas quando necessário para a interação com outros personagens ou durante situações importantes no RP.</em>
+    </li>
+    <li><strong>12 - Procedimentos médicos:</strong> Respeite o RP médico, não cure ou faça procedimentos fora da realidade do jogo.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Recuperar a saúde do personagem de forma instantânea ou sem justificar os procedimentos médicos, como fazer uma cirurgia com ferramentas improvisadas.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Buscar um médico ou hospital quando ferido e seguir as etapas realistas para a cura, como esperar o atendimento de profissionais ou seguir a orientação médica.</em>
+    </li>
+    <li><strong>13 - Nomenclaturas:</strong> Não use nomes inadequados ou ofensivos para seu personagem.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Escolher um nome ofensivo ou inapropriado para seu personagem que possa prejudicar a experiência de outros jogadores.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Criar um nome para seu personagem que seja adequado e respeitoso dentro do universo do RP, contribuindo para a imersão no jogo.</em>
+    </li>
+    <li><strong>14 - Dívidas e/ou golpes financeiros:</strong> Cumpra suas dívidas ou resolva golpes financeiros com base em RP, evitando comportamentos tóxicos.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Fugir de dívidas ou enganar outros jogadores com golpes financeiros sem cumprir a parte do RP, prejudicando a interação.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Resolver questões financeiras dentro do RP, seja quitando dívidas, negociando ou buscando maneiras justas de lidar com essas situações.</em>
+    </li>
+    <li><strong>15 - Personagens extras:</strong> Não crie personagens extras para burlar regras ou criar vantagem indevida.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Criar múltiplos personagens para manipular o jogo, burlar regras ou obter vantagens de forma ilegal.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Criar e jogar com um único personagem, respeitando a história e as regras estabelecidas para o RP.</em>
+    </li>
+    <li><strong>16 - Streamers e Criadores de conteúdo:</strong> Respeite os streamers e criadores de conteúdo, sem interromper ou causar distúrbios em suas transmissões.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Interromper uma transmissão de streamer ou criar confusão durante a transmissão, prejudicando a experiência.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Apoiar streamers de forma positiva, participando do RP sem causar distúrbios, e respeitando o trabalho dos criadores de conteúdo.</em>
+    </li>
+    <li><strong>17 - Uso de redes sociais:</strong> Mantenha o uso de redes sociais dentro do universo do jogo, sem extrapolar para fora do RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Usar redes sociais para compartilhar informações externas ao RP ou para criar vantagens no jogo.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Usar as redes sociais dentro do RP, interagindo com outros personagens e compartilhando informações ou acontecimentos do universo do jogo.</em>
+    </li>
+</ul>
+
+</section>
+
+        <section id="leias" class="rules">
+            <h2><i class="fas fa-balance-scale"></i> Leias</h2>
+            <ul>
+    <li><strong>1 - Grupos/Organizações Ilegais:</strong> A formação e a atuação de organizações ilegais são permitidas no jogo, mas sempre com coerência no roleplay e sem abusos.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Criar um grupo sem histórico ou envolvimento legítimo no RP, apenas para gerar caos, ou usar o grupo para atacar indiscriminadamente outros jogadores sem justificativa.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Criar e gerenciar uma organização criminosa com uma história detalhada, interagindo com outros grupos de maneira que faça sentido dentro da narrativa do servidor, como envolvimento em atividades ilícitas planejadas.</em>
+    </li>
+    <li><strong>2 - Forças Policiais:</strong> Os policiais devem agir de forma realista, respeitando o papel de proteger e manter a ordem, sem abusar de poder ou forçar situações irreais.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Agir como policial de forma autoritária, usando o cargo para intimidar outros jogadores sem motivo, ou prendendo sem justificativa plausível.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Agir de maneira profissional e coerente, investigando crimes e realizando abordagens com cautela, respeitando os direitos do cidadão e buscando resolver situações sem usar força excessiva.</em>
+    </li>
+    <li><strong>3 - Médicos, Mecânicos, Corretores e Jornalistas:</strong> Profissões devem ser desempenhadas com seriedade e realismo, respeitando o tempo e os recursos necessários para concluir as tarefas.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Ignorar as etapas necessárias para realizar um procedimento médico, como curar um jogador imediatamente sem realizar os passos adequados.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Médicos devem tratar feridos adequadamente, mecânicos precisam diagnosticar problemas no veículo antes de repará-lo, corretores devem realizar transações legítimas e jornalistas devem seguir protocolos para apurar e relatar eventos dentro do RP.</em>
+    </li>
+    <li><strong>4 - Assaltos de Rua e Sequestro:</strong> Assaltos e sequestros devem ser realizados de forma que agreguem ao RP, com a devida coerência e respeitando o limite do roleplay dos outros jogadores.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Realizar assaltos ou sequestros sem motivo ou contexto, como roubar alguém apenas por diversão ou para causar transtorno.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Planejar o assalto ou sequestro com base em uma narrativa que faça sentido dentro do RP, e realizar a abordagem de forma realista, como exigir um resgate ou tomar medidas para negociar de maneira plausível.</em>
+    </li>
+    <li><strong>5 - Roubo de veículos de jogadores:</strong> O roubo de veículos deve seguir as leis do RP e ser realizado dentro de um contexto plausível, sem abusos.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Roubar veículos de jogadores sem justificativa, como apenas para ganhar dinheiro ou para gerar caos, sem criar um enredo realista.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Realizar o roubo de um veículo após uma perseguição ou em uma situação que envolva um planejamento prévio, com a intenção de cumprir um objetivo dentro do RP, como revender ou usá-lo para outra atividade ilegal.</em>
+    </li>
+    <li><strong>6 - Compra e Venda de Drogas:</strong> A compra e venda de drogas devem ocorrer de forma realista e com base em um enredo dentro do RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Criar negociações de drogas de forma irrelevante ou sem um contexto plausível, como apenas por diversão ou para gerar lucro sem envolvimento com a história.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Participar de atividades relacionadas à compra e venda de drogas com uma narrativa coerente, onde o personagem faz parte de um grupo ou mercado ilegal, respeitando os riscos e as consequências dessa atividade.</em>
+    </li>
+    <li><strong>7 - Assalto à Residências:</strong> Os assaltos a residências devem ser feitos com respeito ao RP e com uma justificativa plausível para o ato.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Invadir casas ou apartamentos sem um bom motivo ou história por trás disso, apenas para roubar objetos e causar problemas para outros jogadores.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Planejar e realizar um assalto à residência com base em informações reais dentro do RP, como procurar por bens valiosos, usando estratégias de infiltração e não agindo de maneira aleatória.</em>
+    </li>
+    <li><strong>8 - Chamados de Serviço:</strong> Todos os chamados de serviço, como para médicos, mecânicos ou policiais, devem ser atendidos de forma realista e eficiente.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Ignorar chamados ou não realizar a função de forma adequada, como não comparecer a um chamado de emergência ou desconsiderar a gravidade de uma situação.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Atender aos chamados de serviço com a devida atenção e agir de maneira eficiente, levando em consideração o tipo de serviço e a urgência do caso.</em>
+    </li>
+    <li><strong>9 - Regras Gerais de Assalto a Estabelecimentos:</strong> Assaltos a estabelecimentos comerciais devem seguir um contexto plausível e ser executados com planejamento.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Invadir lojas, bancos ou outros estabelecimentos sem uma razão coerente ou planejamento, apenas para gerar caos ou porque "não há nada melhor para fazer".</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Realizar o assalto de uma loja ou banco com um plano detalhado, seja para conseguir dinheiro ou bens, mas sempre levando em conta a reação da polícia e a segurança do local.</em>
+    </li>
+    <li><strong>10 - Fuga da Polícia e Corridas Ilegais:</strong> Fugir da polícia ou participar de corridas ilegais deve ser feito de maneira realista e com consequências, respeitando o fluxo do RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Fugir da polícia apenas por diversão ou participar de corridas ilegais sem qualquer justificativa plausível, colocando o servidor em um estado de caos constante.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Fugir da polícia após um crime de forma realista, como em um veículo de alta performance, ou participar de corridas ilegais com base em uma história que envolva dinheiro, adrenalina ou uma disputa legítima entre personagens.</em>
+    </li>
+    <li><strong>11 - Sequestrado e/ou Refém:</strong> Sequestrar alguém ou agir como refém deve ter um contexto claro e deve ser realizado de forma que respeite a integridade do RP.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Sequestrar ou manter alguém como refém sem motivo razoável, apenas para forçar outro jogador a fazer algo ou prejudicar sua experiência no jogo.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Sequestrar um jogador com um motivo claro e coerente, como uma negociação de resgate, e garantir que a situação envolva um risco real para o personagem, com espaço para o desenvolvimento do RP.</em>
+    </li>
+    <li><strong>12 - Contratos Ilegais:</strong> Contratos ilegais, como acordos para realizar crimes, devem ser feitos de forma convincente e sem abuso.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Criar contratos ilegais sem sentido, apenas para manipular o jogo ou envolver outros jogadores em situações irreais e sem contexto.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Negociar e firmar contratos ilegais dentro de uma narrativa plausível, como acordos para realizar atividades ilícitas, com consequências claras e riscos envolvidos.</em>
+    </li>
+</ul>
+        </section>
+
+        <section id="discord" class="rules">
+            <h2><i class="fab fa-discord"></i> Regras Discord</h2>
+<ul>
+    <li><strong>1 - Respeito ao Próximo:</strong> Trate todos os membros com respeito, independentemente de opiniões, etnia, gênero ou qualquer outra característica pessoal.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Insultar, discriminar ou atacar pessoalmente outros membros, seja por mensagem ou voz.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Interagir de maneira educada e amigável com todos, mesmo em discussões ou situações de desacordo.</em>
+    </li>
+    <li><strong>2 - Proibição de Discurso de Ódio:</strong> Não será tolerado discurso de ódio, racismo, homofobia, xenofobia ou qualquer forma de discriminação.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Fazer comentários preconceituosos ou tentar incitar ódio contra qualquer grupo ou indivíduo.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Fomentar um ambiente inclusivo e acolhedor, evitando qualquer forma de discriminação e respeitando as diferenças.</em>
+    </li>
+    <li><strong>3 - Proibição de Spam:</strong> Não envie mensagens repetitivas, links irrelevantes, propaganda sem permissão ou qualquer tipo de conteúdo repetitivo.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Enviar mensagens em massa, floodando canais com conteúdo irrelevante ou links de publicidade sem permissão.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Utilizar os canais de forma construtiva, com conteúdo relevante e sem interromper o fluxo das conversas com spam.</em>
+    </li>
+    <li><strong>4 - Linguagem Apropriada:</strong> Evite o uso de palavrões ou linguagem vulgar. Mantenha o ambiente amigável para todos os tipos de jogadores.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Usar palavrões excessivos ou linguagem ofensiva em canais públicos ou privados, de forma que prejudique o ambiente.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Manter o tom das conversas respeitoso e adequado, utilizando uma linguagem educada e apropriada para todos.</em>
+    </li>
+    <li><strong>5 - Uso Apropriado de Canais de Voz:</strong> Utilize os canais de voz de maneira adequada. Evite microfone aberto desnecessário, interromper os outros ou gritar.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Deixar o microfone aberto enquanto realiza barulho excessivo ou interromper constantemente os outros membros durante uma conversa.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Usar os canais de voz para conversas relevantes e de forma controlada, mutando o microfone quando não estiver falando ou ao realizar atividades que causam ruído.</em>
+    </li>
+    <li><strong>6 - Respeite as Decisões da Moderação:</strong> Os moderadores são responsáveis por garantir que as regras sejam cumpridas e manter o ambiente saudável. Respeite as ações deles.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Ignorar ou desafiar publicamente as ações dos moderadores, criando um ambiente hostil ou desorganizado.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Aceitar as orientações dos moderadores e, se necessário, discutir qualquer desacordo de forma respeitosa e privada com eles.</em>
+    </li>
+    <li><strong>7 - Proibição de Trollagem e Comportamento Tóxico:</strong> Comportamento que visa apenas criar problemas ou desestabilizar o servidor não será tolerado.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Criar caos intencionalmente, fazer brincadeiras de mau gosto ou agir apenas para irritar outros membros.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Agir de maneira construtiva e positiva, buscando melhorar a experiência do servidor e não criar situações de estresse ou frustração.</em>
+    </li>
+    <li><strong>8 - Proibição de Cheats, Bots e Exploits:</strong> O uso de cheats, bots ou qualquer tipo de exploração de falhas no servidor é estritamente proibido.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Utilizar softwares de trapaça, scripts automáticos ou explorar falhas do servidor para obter vantagens de forma ilícita.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Jogar de maneira justa, sem recorrer a programas externos que possam prejudicar a integridade do jogo ou a experiência de outros jogadores.</em>
+    </li>
+    <li><strong>9 - Evite Discussões Políticas ou Religiosas:</strong> Discussões sobre política ou religião podem gerar atritos. Mantenha essas conversas em outros espaços que não o servidor.
+        <br><em><span style="color: red;">Exemplo de desrespeito à regra:</span> Iniciar discussões acaloradas sobre política ou religião, causando desconforto e divisão entre os membros.</em>
+        <br><em><span style="color: green;">Exemplo de respeito à regra:</span> Evitar discutir tópicos sensíveis e manter o foco nas atividades relacionadas ao servidor e à diversão.</em>
+    </li>
+</ul>
+        </section>
+
+        <a class="home-button" href="index.html"><i class="fas fa-arrow-left"></i> Voltar para o Site Principal</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 After City Roleplay. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function searchRules() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const sections = document.querySelectorAll(".rules");
+            
+            sections.forEach(section => {
+                const rules = section.querySelectorAll("ul li");
+                rules.forEach(rule => {
+                    const ruleText = rule.textContent.toLowerCase();
+                    if (ruleText.includes(searchTerm)) {
+                        rule.style.display = "block"; // Show the matching rule
+                    } else {
+                        rule.style.display = "none"; // Hide the non-matching rule
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

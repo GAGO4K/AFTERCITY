@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos e Competições</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background-color: #6200ea;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ffea00;
+        }
+
+        .eventos-section, .inscricao-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .eventos-section h1, .inscricao-section h2 {
+            color: #6200ea;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .filtro {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .filtro label {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .filtro select {
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: border 0.3s ease;
+        }
+
+        .filtro select:focus {
+            border-color: #6200ea;
+        }
+
+        .eventos-lista {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .evento {
+            background-color: #fafafa;
+            border: 2px solid #6200ea;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .evento:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .evento h3 {
+            color: #6200ea;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .evento p {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .evento .contagem {
+            font-weight: bold;
+            color: #f44336;
+        }
+
+        .inscricao-section {
+            background-color: #fafafa;
+            margin-top: 40px;
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        #form-inscricao {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #form-inscricao input, #form-inscricao select, #form-inscricao button {
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: border 0.3s ease;
+        }
+
+        #form-inscricao input:focus, #form-inscricao select:focus {
+            border-color: #6200ea;
+        }
+
+        button {
+            background-color: #6200ea;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3700b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #6200ea;
+            color: #fff;
+            margin-top: 50px;
+            border-top: 2px solid #fff;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#inscrever">Inscrever-se</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="eventos" class="eventos-section">
+        <h1>Eventos e Competições</h1>
+        <div class="filtro">
+            <label for="filtro-categoria">Categoria:</label>
+            <select id="filtro-categoria">
+                <option value="todos">Todos</option>
+                <option value="corridas">Corridas</option>
+                <option value="desafios">Desafios</option>
+                <option value="sorteios">Sorteios</option>
+            </select>
+        </div>
+        <div id="eventos-lista" class="eventos-lista"></div>
+    </section>
+    
+    <section id="inscrever" class="inscricao-section">
+        <h2>Inscreva-se no Evento</h2>
+        <form id="form-inscricao">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" required><br>
+
+            <label for="evento">Escolha um Evento:</label>
+            <select id="evento" required></select><br>
+
+            <button type="submit">Inscrever-se</button>
+        </form>
+        <div id="mensagem-inscricao"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 After City RP. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const eventos = [
+            {
+                id: 1,
+                nome: 'Corrida Noturna',
+                categoria: 'corridas',
+                descricao: 'Participe da corrida noturna para ganhar prêmios incríveis!',
+                data: '2025-02-15T20:00:00',
+                local: 'Cidade Central',
+            },
+            {
+                id: 2,
+                nome: 'Desafio de Drift',
+                categoria: 'desafios',
+                descricao: 'Testes seus limites com o desafio de drift.',
+                data: '2025-02-20T18:00:00',
+                local: 'Estrada Leste',
+            },
+            {
+                id: 3,
+                nome: 'Sorteio de VIP',
+                categoria: 'sorteios',
+                descricao: 'Ganhe um VIP com um simples clique!',
+                data: '2025-01-30T00:00:00',
+                local: 'Online',
+            }
+        ];
+
+        function mostrarEventos(categoria = 'todos') {
+            const listaEventos = document.getElementById('eventos-lista');
+            listaEventos.innerHTML = '';
+            
+            const eventosFiltrados = categoria === 'todos' ? eventos : eventos.filter(evento => evento.categoria === categoria);
+            
+            eventosFiltrados.forEach(evento => {
+                const eventoDiv = document.createElement('div');
+                eventoDiv.classList.add('evento');
+                
+                eventoDiv.innerHTML = `
+                    <h3>${evento.nome}</h3>
+                    <p><strong>Data:</strong> ${new Date(evento.data).toLocaleString()}</p>
+                    <p><strong>Local:</strong> ${evento.local}</p>
+                    <p>${evento.descricao}</p>
+                    <p><strong>Contagem Regressiva:</strong> <span id="contagem-${evento.id}" class="contagem"></span></p>
+                `;
+                
+                listaEventos.appendChild(eventoDiv);
+                contagemRegressiva(evento.id, evento.data);
+            });
+        }
+
+        function contagemRegressiva(id, dataEvento) {
+            const contagem = document.getElementById(`contagem-${id}`);
+            const dataEventoFormatada = new Date(dataEvento).getTime();
+
+            setInterval(function() {
+                const agora = new Date().getTime();
+                const distancia = dataEventoFormatada - agora;
+
+                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+                if (distancia <= 0) {
+                    contagem.innerHTML = "O evento começou!";
+                } else {
+                    contagem.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+                }
+            }, 1000);
+        }
+
+        document.getElementById('filtro-categoria').addEventListener('change', function() {
+            mostrarEventos(this.value);
+        });
+
+        document.getElementById('form-inscricao').addEventListener('submit', function(evento) {
+            evento.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const eventoEscolhido = document.getElementById('evento').value;
+
+            if (!nome || !eventoEscolhido) {
+                document.getElementById('mensagem-inscricao').innerHTML = '<p>Por favor, preencha todos os campos.</p>';
+                return;
+            }
+
+            const evento = eventos.find(evento => evento.id == eventoEscolhido);
+            document.getElementById('mensagem-inscricao').innerHTML = `<p>Inscrição para "${evento.nome}" realizada com sucesso!</p>`;
+        });
+
+        function carregarEventosNoSelect() {
+            const selectEvento = document.getElementById('evento');
+            eventos.forEach(evento => {
+                const option = document.createElement('option');
+                option.value = evento.id;
+                option.textContent = evento.nome;
+                selectEvento.appendChild(option);
+            });
+        }
+
+        window.onload = function() {
+            mostrarEventos();
+            carregarEventosNoSelect();
+        };
+    </script>
+</body>
+</html>
