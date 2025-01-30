@@ -2,39 +2,195 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://github.com/GAGO4K/AFTERCITY/raw/main/logosemfundo.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termos de Serviço - After City Roleplay</title>
-    <link rel="stylesheet" href="styleshtmls.css">
+    <style>
+        /* Definir a fonte para a página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #171717; /* Cor de fundo escuro */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            background-color: rgb(149, 255, 0); /* Cor verde */
+            padding: 40px;
+            color: #171717;
+            border-bottom: 5px solid #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        /* Barra de pesquisa */
+        .search-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: rgb(149, 255, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-bar button:hover {
+            background-color: #85e600;
+        }
+
+        /* Conteúdo */
+        .content {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #252525;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .content h2 {
+            color: rgb(149, 255, 0); /* Cor verde */
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: rgb(17, 17, 17);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Barra de Cookies */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #252525;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            display: none;
+            justify-content: center;
+        }
+        .cookie-banner button {
+            padding: 10px 20px;
+            background-color: rgb(149, 255, 0);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .cookie-banner button:hover {
+            background-color: #85e600;
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <h1>Termos de Serviço</h1>
     </header>
-    
+
+    <!-- Barra de Pesquisa -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Pesquisar...">
+        <button onclick="searchContent()">Pesquisar</button>
+    </div>
+
     <section class="content">
-        <h2>Introdução</h2>
-        <p>Estes Termos de Serviço regem o uso do site e dos serviços oferecidos pelo After City Roleplay. Ao acessar ou usar nossos serviços, você concorda com os termos descritos aqui.</p>
+        <h2>1. Aceitação dos Termos</h2>
+        <p>Ao acessar e utilizar os serviços do After City Roleplay, você concorda com os termos e condições descritos neste documento. Caso não concorde com algum item, por favor, não utilize nossos serviços.</p>
 
-        <h2>Uso do Site</h2>
-        <p>Você concorda em usar o site de maneira legal e ética, respeitando as leis e regulamentos aplicáveis.</p>
+        <h2>2. Uso de Serviços</h2>
+        <p>Você concorda em usar os nossos serviços de forma responsável e de acordo com a legislação vigente. Não será permitido o uso dos nossos serviços para fins ilegais ou para prejudicar outros usuários.</p>
 
-        <h2>Conta de Usuário</h2>
-        <p>Você é responsável por manter a confidencialidade da sua conta e informações de login. Qualquer atividade realizada em sua conta será de sua responsabilidade.</p>
+        <h2>3. Conta de Usuário</h2>
+        <p>Para utilizar alguns dos nossos serviços, você precisará criar uma conta. Você é responsável pela segurança e pela veracidade das informações fornecidas.</p>
 
-        <h2>Propriedade Intelectual</h2>
-        <p>Todo o conteúdo disponível no nosso site, incluindo textos, imagens e design, é protegido por direitos autorais e outras leis de propriedade intelectual.</p>
+        <h2>4. Propriedade Intelectual</h2>
+        <p>Todo o conteúdo, incluindo textos, imagens, logos, e software presentes no nosso site, são propriedade do After City Roleplay e estão protegidos pelas leis de propriedade intelectual.</p>
 
-        <h2>Limitação de Responsabilidade</h2>
-        <p>O After City Roleplay não se responsabiliza por quaisquer danos diretos ou indiretos decorrentes do uso dos nossos serviços.</p>
+        <h2>5. Modificações nos Termos</h2>
+        <p>O After City Roleplay pode modificar estes Termos de Serviço a qualquer momento, e as mudanças serão publicadas nesta página. Ao continuar utilizando os serviços, você concorda com os novos termos.</p>
 
-        <h2>Alterações nos Termos</h2>
-        <p>Podemos atualizar estes Termos de Serviço periodicamente. Quaisquer mudanças serão publicadas nesta página.</p>
+        <h2>6. Limitação de Responsabilidade</h2>
+        <p>O After City Roleplay não será responsável por quaisquer danos diretos ou indiretos resultantes do uso de nossos serviços, incluindo, mas não se limitando a, perda de dados ou lucros.</p>
+
+        <h2>7. Cancelamento e Suspensão</h2>
+        <p>Reservamo-nos o direito de cancelar ou suspender sua conta em caso de violação dos termos ou por motivos de segurança.</p>
+
+        <h2>8. Lei Aplicável</h2>
+        <p>Este contrato será regido pelas leis do Brasil, e qualquer disputa será resolvida no foro da cidade onde está localizado o After City Roleplay.</p>
 
         <p><strong>Última atualização:</strong> 12 de dezembro de 2024</p>
     </section>
 
-    <footer>
-        <p>&copy; 2024 After City Roleplay. Todos os direitos reservados.</p>
-    </footer>
+    <!-- Banner de cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Utilizamos cookies para melhorar a sua experiência. Ao continuar navegando, você concorda com o uso de cookies. <button onclick="acceptCookies()">Aceitar</button></p>
+    </div>
+
+    <script>
+        // Função para pesquisar conteúdo
+        function searchContent() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const content = document.querySelectorAll('.content h2, .content p');
+            let found = false;
+
+            content.forEach(item => {
+                if (item.innerText.toLowerCase().includes(searchQuery)) {
+                    item.style.backgroundColor = "#333";
+                    found = true;
+                } else {
+                    item.style.backgroundColor = "";
+                }
+            });
+
+            if (!found) {
+                alert('Nenhum resultado encontrado!');
+            }
+        }
+
+        // Função para aceitar cookies
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+
+        // Verifica se o usuário já aceitou os cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieBanner').style.display = 'flex';
+        }
+    </script>
+
 </body>
 </html>

@@ -3,326 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos e Competições</title>
+    <title>Teste de Aceitação de Cookies</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7fb;
-            color: #333;
-        }
-
-        header {
-            background-color: #6200ea;
+            font-family: Arial, sans-serif;
+            background-color: #171717;
             color: #fff;
-            padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 50px;
         }
 
-        header nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        header nav ul li {
-            display: inline;
-            margin: 0 20px;
-        }
-
-        header nav ul li a {
+        .cookie-banner {
+            background-color: #252525;
             color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            color: #ffea00;
-        }
-
-        .eventos-section, .inscricao-section {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 30px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .eventos-section h1, .inscricao-section h2 {
-            color: #6200ea;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .filtro {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .filtro label {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .filtro select {
-            padding: 12px;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            transition: border 0.3s ease;
-        }
-
-        .filtro select:focus {
-            border-color: #6200ea;
-        }
-
-        .eventos-lista {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-
-        .evento {
-            background-color: #fafafa;
-            border: 2px solid #6200ea;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            display: none; /* Inicialmente, o banner está escondido */
         }
 
-        .evento:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .evento h3 {
-            color: #6200ea;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .evento p {
-            color: #555;
-            font-size: 1rem;
-        }
-
-        .evento .contagem {
-            font-weight: bold;
-            color: #f44336;
-        }
-
-        .inscricao-section {
-            background-color: #fafafa;
-            margin-top: 40px;
-            padding: 40px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-        }
-
-        #form-inscricao {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #form-inscricao input, #form-inscricao select, #form-inscricao button {
-            padding: 12px;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            transition: border 0.3s ease;
-        }
-
-        #form-inscricao input:focus, #form-inscricao select:focus {
-            border-color: #6200ea;
-        }
-
-        button {
-            background-color: #6200ea;
-            color: #fff;
+        .cookie-banner button {
+            padding: 10px 20px;
+            background-color: rgb(149, 255, 0); /* Cor verde */
             border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: #3700b3;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #6200ea;
-            color: #fff;
-            margin-top: 50px;
-            border-top: 2px solid #fff;
-        }
-
-        footer p {
-            font-size: 1rem;
+        .cookie-banner button:hover {
+            background-color: #85e600;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Início</a></li>
-                <li><a href="#eventos">Eventos</a></li>
-                <li><a href="#inscrever">Inscrever-se</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="eventos" class="eventos-section">
-        <h1>Eventos e Competições</h1>
-        <div class="filtro">
-            <label for="filtro-categoria">Categoria:</label>
-            <select id="filtro-categoria">
-                <option value="todos">Todos</option>
-                <option value="corridas">Corridas</option>
-                <option value="desafios">Desafios</option>
-                <option value="sorteios">Sorteios</option>
-            </select>
-        </div>
-        <div id="eventos-lista" class="eventos-lista"></div>
-    </section>
-    
-    <section id="inscrever" class="inscricao-section">
-        <h2>Inscreva-se no Evento</h2>
-        <form id="form-inscricao">
-            <label for="nome">Nome Completo:</label>
-            <input type="text" id="nome" required><br>
 
-            <label for="evento">Escolha um Evento:</label>
-            <select id="evento" required></select><br>
+    <h1>Teste de Aceitação de Cookies</h1>
+    <p>Este é um exemplo simples para testar a funcionalidade de aceitação de cookies.</p>
 
-            <button type="submit">Inscrever-se</button>
-        </form>
-        <div id="mensagem-inscricao"></div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 After City RP. Todos os direitos reservados.</p>
-    </footer>
+    <!-- Banner de cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com o uso de cookies.</p>
+        <button onclick="acceptCookies()">Aceitar</button>
+    </div>
 
     <script>
-        const eventos = [
-            {
-                id: 1,
-                nome: 'Corrida Noturna',
-                categoria: 'corridas',
-                descricao: 'Participe da corrida noturna para ganhar prêmios incríveis!',
-                data: '2025-02-15T20:00:00',
-                local: 'Cidade Central',
-            },
-            {
-                id: 2,
-                nome: 'Desafio de Drift',
-                categoria: 'desafios',
-                descricao: 'Testes seus limites com o desafio de drift.',
-                data: '2025-02-20T18:00:00',
-                local: 'Estrada Leste',
-            },
-            {
-                id: 3,
-                nome: 'Sorteio de VIP',
-                categoria: 'sorteios',
-                descricao: 'Ganhe um VIP com um simples clique!',
-                data: '2025-01-30T00:00:00',
-                local: 'Online',
-            }
-        ];
-
-        function mostrarEventos(categoria = 'todos') {
-            const listaEventos = document.getElementById('eventos-lista');
-            listaEventos.innerHTML = '';
-            
-            const eventosFiltrados = categoria === 'todos' ? eventos : eventos.filter(evento => evento.categoria === categoria);
-            
-            eventosFiltrados.forEach(evento => {
-                const eventoDiv = document.createElement('div');
-                eventoDiv.classList.add('evento');
-                
-                eventoDiv.innerHTML = `
-                    <h3>${evento.nome}</h3>
-                    <p><strong>Data:</strong> ${new Date(evento.data).toLocaleString()}</p>
-                    <p><strong>Local:</strong> ${evento.local}</p>
-                    <p>${evento.descricao}</p>
-                    <p><strong>Contagem Regressiva:</strong> <span id="contagem-${evento.id}" class="contagem"></span></p>
-                `;
-                
-                listaEventos.appendChild(eventoDiv);
-                contagemRegressiva(evento.id, evento.data);
-            });
+        // Função para aceitar cookies
+        function acceptCookies() {
+            // Oculta o banner de cookies
+            document.getElementById('cookieBanner').style.display = 'none';
+            // Armazena no localStorage que o usuário aceitou os cookies
+            localStorage.setItem('cookiesAccepted', 'true');
         }
 
-        function contagemRegressiva(id, dataEvento) {
-            const contagem = document.getElementById(`contagem-${id}`);
-            const dataEventoFormatada = new Date(dataEvento).getTime();
-
-            setInterval(function() {
-                const agora = new Date().getTime();
-                const distancia = dataEventoFormatada - agora;
-
-                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-                if (distancia <= 0) {
-                    contagem.innerHTML = "O evento começou!";
-                } else {
-                    contagem.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
-                }
-            }, 1000);
-        }
-
-        document.getElementById('filtro-categoria').addEventListener('change', function() {
-            mostrarEventos(this.value);
-        });
-
-        document.getElementById('form-inscricao').addEventListener('submit', function(evento) {
-            evento.preventDefault();
-            
-            const nome = document.getElementById('nome').value;
-            const eventoEscolhido = document.getElementById('evento').value;
-
-            if (!nome || !eventoEscolhido) {
-                document.getElementById('mensagem-inscricao').innerHTML = '<p>Por favor, preencha todos os campos.</p>';
-                return;
-            }
-
-            const evento = eventos.find(evento => evento.id == eventoEscolhido);
-            document.getElementById('mensagem-inscricao').innerHTML = `<p>Inscrição para "${evento.nome}" realizada com sucesso!</p>`;
-        });
-
-        function carregarEventosNoSelect() {
-            const selectEvento = document.getElementById('evento');
-            eventos.forEach(evento => {
-                const option = document.createElement('option');
-                option.value = evento.id;
-                option.textContent = evento.nome;
-                selectEvento.appendChild(option);
-            });
-        }
-
+        // Verifica se os cookies foram aceitos anteriormente
         window.onload = function() {
-            mostrarEventos();
-            carregarEventosNoSelect();
+            if (!localStorage.getItem('cookiesAccepted')) {
+                // Se não foi aceito, exibe o banner de cookies
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
         };
     </script>
+
+<section class="news">
+    <h2><span class="nossa">ATUALIZAÇÕES</span> <span class="cidade">RECENTES</span></h2>
+    <div class="container">
+        <div class="update-slider">
+            <div class="slider-btn left-btn" id="prev-slide">&#10094;</div>
+            <div class="update-track">
+                <div class="update-card">
+                    <a href="atualizacao1.html">
+                        <img src="patchnotes1.png" alt="Atualização 1">
+                        <div class="update-info">
+                            <p class="update-title">2025.01.20</p>
+                            <p class="update-description">Confira as novidades desta versão!</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="update-card">
+                    <a href="atualizacao2.html">
+                        <img src="patchnotes2.png" alt="Atualização 2">
+                        <div class="update-info">
+                            <p class="update-title">2025.01.15</p>
+                            <p class="update-description">Melhorias no sistema de tickets.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="update-card">
+                    <a href="atualizacao3.html">
+                        <img src="patchnotes3.png" alt="Atualização 3">
+                        <div class="update-info">
+                            <p class="update-title">2025.01.10</p>
+                            <p class="update-description">Adicionamos novos pacotes VIP!</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="slider-btn right-btn" id="next-slide">&#10095;</div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .news {
+        padding: 50px 20px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .news h2 {
+        margin-bottom: 30px;
+    }
+
+    .container {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .update-slider {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .update-track {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.5s ease;
+    }
+
+    .update-card {
+        width: 316px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 2px solid #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .update-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .update-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .update-card:hover img {
+        opacity: 1;
+    }
+
+    .update-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 10px;
+        box-sizing: border-box;
+        color: #fff;
+        text-align: left;
+    }
+
+    .update-info .update-title {
+        font-size: 1rem;
+        font-weight: bold;
+        margin: 0;
+        color: #000000f3;
+    }
+
+    .update-info .update-description {
+        font-size: 0.8rem;
+        margin: 5px 0 0;
+        color: #ddd;
+    }
+
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        padding: 10px 15px;
+        cursor: pointer;
+        z-index: 10;
+        transition: background-color 0.3s;
+    }
+
+    .slider-btn:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .left-btn {
+        left: 10px;
+    }
+
+    .right-btn {
+        right: 10px;
+    }
+</style>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.update-card');
+    const totalSlides = slides.length;
+
+    const updateTrack = document.querySelector('.update-track');
+
+    function moveSlide(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = totalSlides - 1;
+        if (currentIndex >= totalSlides) currentIndex = 0;
+        updateTrack.style.transform = `translateX(-${currentIndex * 336}px)`; // 336px = largura do cartão + gap
+    }
+
+    document.getElementById('prev-slide').addEventListener('click', () => moveSlide(-1));
+    document.getElementById('next-slide').addEventListener('click', () => moveSlide(1));
+</script>
+
+
 </body>
 </html>

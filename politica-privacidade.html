@@ -2,39 +2,193 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://github.com/GAGO4K/AFTERCITY/raw/main/logosemfundo.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidade - After City Roleplay</title>
-    <link rel="stylesheet" href="styleshtmls.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #171717;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            background-color: rgb(149, 255, 0);
+            padding: 40px;
+            color: #171717;
+            border-bottom: 5px solid #fff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: rgb(149, 255, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-bar button:hover {
+            background-color: #85e600;
+        }
+
+        .content {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #252525;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .content h2 {
+            color: rgb(149, 255, 0);
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: rgb(17, 17, 17);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #252525;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            display: none;
+        }
+
+        .cookie-banner button {
+            padding: 10px 20px;
+            background-color: rgb(149, 255, 0);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .cookie-banner button:hover {
+            background-color: #85e600;
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <h1>Política de Privacidade</h1>
     </header>
-    
+
+    <!-- Barra de Pesquisa -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Pesquisar...">
+        <button onclick="searchContent()">Pesquisar</button>
+    </div>
+
     <section class="content">
-        <h2>Introdução</h2>
-        <p>Bem-vindo à nossa Política de Privacidade. Esta política explica como coletamos, usamos e protegemos suas informações pessoais ao usar o nosso site e serviços.</p>
+        <h2>1. Coleta de Informações</h2>
+        <p>Coletamos informações pessoais, como nome, endereço de e-mail e dados de navegação, quando você interage com nosso site. Esses dados são usados para melhorar a experiência do usuário e oferecer serviços personalizados.</p>
 
-        <h2>Informações Coletadas</h2>
-        <p>Coletamos informações pessoais que você nos fornece diretamente, como nome, e-mail, e outras informações fornecidas ao se cadastrar no site ou utilizar nossos serviços.</p>
+        <h2>2. Uso das Informações</h2>
+        <p>As informações coletadas são usadas para processar solicitações, oferecer suporte ao cliente e enviar atualizações relacionadas aos nossos serviços. Não compartilhamos seus dados com terceiros sem seu consentimento, exceto quando exigido por lei.</p>
 
-        <h2>Como Usamos Suas Informações</h2>
-        <p>Usamos suas informações para melhorar nossa experiência de usuário, oferecer suporte e, em alguns casos, para marketing de produtos ou serviços relacionados ao After City Roleplay.</p>
+        <h2>3. Cookies</h2>
+        <p>Utilizamos cookies para melhorar a experiência no nosso site. Eles nos ajudam a entender suas preferências e otimizar a navegação. Você pode desativar os cookies nas configurações do seu navegador, mas isso pode afetar algumas funcionalidades do site.</p>
 
-        <h2>Segurança</h2>
-        <p>Nos esforçamos para proteger suas informações pessoais com medidas de segurança adequadas e práticas recomendadas de mercado.</p>
+        <h2>4. Segurança dos Dados</h2>
+        <p>Empregamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado, alteração ou divulgação. No entanto, nenhum método de transmissão pela internet é completamente seguro.</p>
 
-        <h2>Cookies</h2>
-        <p>Utilizamos cookies para melhorar a funcionalidade do site e oferecer uma experiência personalizada. Você pode optar por desativar os cookies no seu navegador.</p>
+        <h2>5. Direitos do Usuário</h2>
+        <p>Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. Caso deseje exercer esses direitos, entre em contato conosco através dos canais disponíveis no site.</p>
 
-        <h2>Alterações na Política</h2>
-        <p>Podemos atualizar esta Política de Privacidade periodicamente. Quando isso ocorrer, publicaremos as mudanças nesta página e atualizaremos a data de modificação abaixo.</p>
+        <h2>6. Alterações na Política de Privacidade</h2>
+        <p>Podemos atualizar nossa política de privacidade periodicamente. As alterações serão publicadas nesta página com a data de atualização. Recomendamos que você verifique esta página regularmente.</p>
 
-        <p><strong>Última atualização:</strong> 12 de dezembro de 2024</p>
+        <h2>7. Contato</h2>
+        <p>Se tiver dúvidas sobre nossa política de privacidade, entre em contato conosco pelo e-mail: <strong>suporte@aftercityrp.shop</strong>.</p>
+
+        <p><strong>Última atualização:</strong> 22 de janeiro de 2025</p>
     </section>
 
-    <footer>
-        <p>&copy; 2024 After City Roleplay. Todos os direitos reservados.</p>
-    </footer>
+    <!-- Banner de cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Utilizamos cookies para melhorar a sua experiência. Ao continuar navegando, você concorda com o uso de cookies. <button onclick="acceptCookies()">Aceitar</button></p>
+    </div>
+
+    <script>
+        // Função para pesquisar conteúdo
+        function searchContent() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const content = document.querySelectorAll('.content h2, .content p');
+            let found = false;
+
+            content.forEach(item => {
+                if (item.innerText.toLowerCase().includes(searchQuery)) {
+                    item.style.backgroundColor = "#333";
+                    found = true;
+                } else {
+                    item.style.backgroundColor = "";
+                }
+            });
+
+            if (!found) {
+                alert('Nenhum resultado encontrado!');
+            }
+        }
+
+        // Função para aceitar cookies
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
+        }
+
+        // Verifica se o usuário já aceitou os cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieBanner').style.display = 'flex';
+        }
+    </script>
+
 </body>
 </html>
